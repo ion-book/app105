@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>timeline</ion-title>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let album of albums" (click)="goToAlbumDetailPage()">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="assets/imgs/marty-avatar.png">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+    <img src="http://placehold.it/350x150"/>
+    <ion-card-content>
+      <ion-card-title>{{ album.title }}</ion-card-title>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

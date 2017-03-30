@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-searchbar
+      [(ngModel)]="query"
+      showCancelButton="true"
+      (ionInput)="onInput()">
+    </ion-searchbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-33 *ngFor="let album of albums">
+        <img src="http://placehold.it/100x100" alt="image">
+        <p>{{ album.title }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

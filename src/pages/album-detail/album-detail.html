@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>album-detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-33 *ngFor="let photo of photos" (click)="openGallery( photo )">
+        <img [src]="photo.image" alt="image">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
