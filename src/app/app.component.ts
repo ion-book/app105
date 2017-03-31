@@ -5,15 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
-import { ProfilePage } from '../pages/profile/profile';
-import { SettingsPage } from '../pages/settings/settings';
+import { TasksPage } from '../pages/tasks/tasks';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage:any = TutorialPage;
+  rootPage:any = HomePage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -38,19 +37,6 @@ export class MyApp {
     },
   ];
 
-  profilePages: any[] = [
-    {
-      title: 'Profile',
-      icon: 'grid',
-      component: ProfilePage,
-    },
-    {
-      title: 'Settings',
-      icon: 'archive',
-      component: SettingsPage
-    }
-  ];
-
   constructor(
     platform: Platform,
     statusBar: StatusBar,
@@ -68,8 +54,8 @@ export class MyApp {
     });
   }
 
-  openPage(page){
-    this.nav.setRoot(page.component);
+  openTasksPage(){
+    this.nav.setRoot(TasksPage);
   }
 
   logout(){

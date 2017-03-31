@@ -12,8 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { TimelinePage } from '../pages/timeline/timeline';
 import { TopPage } from '../pages/top/top';
 import { UsersPage } from '../pages/users/users';
-import { ProfilePage } from '../pages/profile/profile';
-import { SettingsPage } from '../pages/settings/settings';
+import { TasksPage } from '../pages/tasks/tasks';
 import { AlbumDetailPage } from '../pages/album-detail/album-detail';
 import { GalleryPage } from '../pages/gallery/gallery';
 
@@ -28,8 +27,7 @@ const PAGES = [
   TimelinePage,
   TopPage,
   UsersPage,
-  ProfilePage,
-  SettingsPage,
+  TasksPage,
   AlbumDetailPage,
   GalleryPage
 ];
