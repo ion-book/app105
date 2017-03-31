@@ -12,13 +12,16 @@ import { HomePage } from '../pages/home/home';
 import { TimelinePage } from '../pages/timeline/timeline';
 import { TopPage } from '../pages/top/top';
 import { UsersPage } from '../pages/users/users';
-import { TasksPage } from '../pages/tasks/tasks';
 import { AlbumDetailPage } from '../pages/album-detail/album-detail';
 import { GalleryPage } from '../pages/gallery/gallery';
+
+import { TasksPage } from '../pages/tasks/tasks';
+import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
 
 import { AlbumsService } from '../providers/albums-service';
 import { UsersService } from '../providers/users-service';
 import { TasksService } from '../providers/tasks-service';
+import { TasksLocalService } from '../providers/tasks-local-service';
 
 const PAGES = [
   TutorialPage,
@@ -29,6 +32,7 @@ const PAGES = [
   TopPage,
   UsersPage,
   TasksPage,
+  TasksLocalPage,
   AlbumDetailPage,
   GalleryPage
 ];
@@ -54,7 +58,8 @@ const PAGES = [
     //Services
     AlbumsService,
     UsersService,
-    TasksService
+    TasksService,
+    TasksLocalService
   ]
 })
 export class AppModule {}

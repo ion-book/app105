@@ -11,11 +11,11 @@
     </ion-list>
     <ion-list>
       <ion-list-header>
-        Profile
-      </ion-list-header>
-      <button ion-item menuClose (click)="openTasksPage()">
-        <ion-icon item-left name="list"></ion-icon>
         Tasks
+      </ion-list-header>
+      <button ion-item menuClose *ngFor="let page of taskPages" (click)="openTasksPage(page)">
+        <ion-icon item-left [name]="page.icon"></ion-icon>
+        {{page.title}}
       </button>
       <button ion-item menuClose (click)="logout()">
         <ion-icon item-left name="close"></ion-icon>

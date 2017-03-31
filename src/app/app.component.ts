@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 import { TasksPage } from '../pages/tasks/tasks';
+import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +38,19 @@ export class MyApp {
     },
   ];
 
+  taskPages: any[] = [
+    {
+      title: 'Tasks REST',
+      icon: 'images',
+      component: TasksPage
+    },
+    {
+      title: 'Tasks Local',
+      icon: 'star',
+      component: TasksLocalPage
+    }
+  ];
+
   constructor(
     platform: Platform,
     statusBar: StatusBar,
@@ -54,8 +68,8 @@ export class MyApp {
     });
   }
 
-  openTasksPage(){
-    this.nav.setRoot(TasksPage);
+  openTasksPage( page ){
+    this.nav.setRoot( page.component );
   }
 
   logout(){
