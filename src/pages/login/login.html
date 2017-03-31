@@ -1,28 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Ingresar</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
- <form novalidate (ngSubmit)="saveData( $event )">
+ <form [formGroup]="loginForm" (ngSubmit)="saveData( $event )" novalidate>
     <ion-list>
       <ion-item>
         <ion-label stacked>Correo:</ion-label>
-        <ion-input type="email" placeholder="Ej: mail@mail.com" [(ngModel)]="data.email" [ngModelOptions]="{standalone: true}"></ion-input>
+        <ion-input type="email" placeholder="Ej: mail@mail.com" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="loginForm.get('email').errors && loginForm.get('email').dirty">
+        <p color="primary" *ngIf="loginForm.get('email').hasError('required')">Campo requerido</p>
+        <p color="primary" *ngIf="loginForm.get('email').hasError('pattern')">No es un email valido</p>
       </ion-item>
       <ion-item>
         <ion-label stacked>Password:</ion-label>
-        <ion-input type="password" placeholder="Ej: 123345" [(ngModel)]="data.password" [ngModelOptions]="{standalone: true}"></ion-input>
+        <ion-input type="password" placeholder="Ej: 123345" formControlName="password"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label stacked>Age:</ion-label>
-        <ion-input type="number" placeholder="Ej: 123345" [(ngModel)]="data.number" [ngModelOptions]="{standalone: true}"></ion-input>
+      <ion-item *ngIf="loginForm.get('password').errors && loginForm.get('password').dirty">
+        <p color="primary" *ngIf="loginForm.get('password').hasError('required')">Campo requerido</p>
+        <p color="primary" *ngIf="loginForm.get('password').hasError('minlength')">Minimo 6 campos</p>
       </ion-item>
     </ion-list>
     <div padding>
-      <button ion-button block  type="submit" icon-left>
+      <button ion-button block  type="submit" icon-left [disabled]="loginForm.invalid">
         <ion-icon name="log-in"></ion-icon>
         Ingresar
       </button>

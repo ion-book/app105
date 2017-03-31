@@ -5,9 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
-import { TimelinePage } from '../pages/timeline/timeline';
-import { TopPage } from '../pages/top/top';
-import { UsersPage } from '../pages/users/users';
 import { ProfilePage } from '../pages/profile/profile';
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -16,7 +13,7 @@ import { SettingsPage } from '../pages/settings/settings';
 })
 export class MyApp {
 
-  rootPage:any = HomePage;
+  rootPage:any = TutorialPage;
 
   @ViewChild(Nav) nav: Nav;
 
