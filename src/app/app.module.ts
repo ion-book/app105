@@ -18,6 +18,7 @@ import { GalleryPage } from '../pages/gallery/gallery';
 
 import { AlbumsService } from '../providers/albums-service';
 import { UsersService } from '../providers/users-service';
+import { TasksService } from '../providers/tasks-service';
 
 const PAGES = [
   TutorialPage,
@@ -52,7 +53,8 @@ const PAGES = [
     SplashScreen,
     //Services
     AlbumsService,
-    UsersService
+    UsersService,
+    TasksService
   ]
 })
 export class AppModule {}

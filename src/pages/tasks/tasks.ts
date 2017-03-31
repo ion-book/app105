@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Tasks page.
+import { TasksService } from '../../providers/tasks-service';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+
 @Component({
   selector: 'page-tasks',
   templateUrl: 'tasks.html'
 })
 export class TasksPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  tasks: any[];
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public tasksService: TasksService
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TasksPage');
+    this.tasks = this.tasksService.getAll();
   }
 
 }
