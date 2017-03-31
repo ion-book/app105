@@ -72,7 +72,7 @@ export class TasksPage {
     this.tasksService.update( task );
   }
 
-  updateTask( task: any ){
+  updateTask( task: any, index: any ){
     let prompt = this.alertCtrl.create({
       title: 'Actualizar tarea',
       message: "Digite la nueva tarea",
@@ -93,10 +93,11 @@ export class TasksPage {
         {
           text: 'Save',
           handler: data => {
-            task.title = data.title;
-            this.tasksService.update( task )
+            let updatetask = Object.assign({}, task);
+            updatetask.title = data.title;
+            this.tasksService.update( updatetask )
             .then(resultTask =>{
-              console.log( resultTask );
+              this.tasks[index] = resultTask;
             })
             .catch(error =>{
               console.error( error );
@@ -106,6 +107,16 @@ export class TasksPage {
       ]
     });
     prompt.present();
+  }
+
+  deleteTask(task, index){
+    this.tasksService.delete(task.id)
+    .then(resultTask =>{
+      this.tasks.splice(index, 1);
+    })
+    .catch(error =>{
+      console.error( error );
+    });
   }
 
 }

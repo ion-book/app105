@@ -47,4 +47,16 @@ export class TasksService {
     });
   }
 
+  delete(idTask: string){
+    return new Promise((resolve, reject)=>{
+      this.http.delete(`${this.path}/${idTask}`)
+      .map(res => res.json())
+      .subscribe(data=>{
+        resolve(data);
+      }, error=> {
+        reject(error);
+      })
+    });
+  }
+
 }

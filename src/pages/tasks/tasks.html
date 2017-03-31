@@ -14,17 +14,17 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks ">
+    <ion-item-sliding *ngFor="let task of tasks; let i = index">
       <ion-item >
         <ion-label>{{task.title}}</ion-label>
         <ion-checkbox (ionChange)="onChange( task )" [checked]="task.completed"></ion-checkbox>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="updateTask( task )">
+        <button ion-button color="primary" (click)="updateTask( task, i )">
           <ion-icon name="attach"></ion-icon>
           Editar
         </button>
-        <button ion-button color="primary">
+        <button ion-button color="primary" (click)="deleteTask( task, i )">
           <ion-icon name="trash"></ion-icon>
           Borrar
         </button>
