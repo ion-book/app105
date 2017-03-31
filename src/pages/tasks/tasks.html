@@ -17,9 +17,13 @@
     <ion-item-sliding *ngFor="let task of tasks ">
       <ion-item >
         <ion-label>{{task.title}}</ion-label>
-        <ion-checkbox [checked]="task.completed" [(ngModel)]='task.completed'></ion-checkbox>
+        <ion-checkbox (ionChange)="onChange( task )" [checked]="task.completed"></ion-checkbox>
       </ion-item>
       <ion-item-options side="right">
+        <button ion-button color="primary" (click)="updateTask( task )">
+          <ion-icon name="attach"></ion-icon>
+          Editar
+        </button>
         <button ion-button color="primary">
           <ion-icon name="trash"></ion-icon>
           Borrar

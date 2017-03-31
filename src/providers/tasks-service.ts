@@ -35,4 +35,16 @@ export class TasksService {
     });
   }
 
+  update(task: any){
+    return new Promise((resolve, reject)=>{
+      this.http.put(`${this.path}/${task.id}`, task)
+      .map(res => res.json())
+      .subscribe(data=>{
+        resolve(data);
+      }, error=> {
+        reject(error);
+      })
+    });
+  }
+
 }

@@ -67,4 +67,45 @@ export class TasksPage {
     prompt.present();
   }
 
+  onChange( task: any){
+    task.completed = !task.completed;
+    this.tasksService.update( task );
+  }
+
+  updateTask( task: any ){
+    let prompt = this.alertCtrl.create({
+      title: 'Actualizar tarea',
+      message: "Digite la nueva tarea",
+      inputs: [
+        {
+          name: 'title',
+          value: task.title,
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            task.title = data.title;
+            this.tasksService.update( task )
+            .then(resultTask =>{
+              console.log( resultTask );
+            })
+            .catch(error =>{
+              console.error( error );
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 }
