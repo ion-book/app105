@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController, LoadingController } from 'ionic-angular';
 
 import { UsersService } from '../../providers/users-service';
 
@@ -16,11 +16,22 @@ export class UsersPage {
     public navParams: NavParams,
     public usersService: UsersService,
     public alertCtrl: AlertController,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController,
+    public loadCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {
-    this.users = this.usersService.getAll();
+    let load = this.loadCtrl.create();
+    load.present();
+    this.usersService.getAll()
+    .then((data: any) =>{
+      this.users = data.results;
+      load.dismiss();
+    })
+    .catch(error =>{
+      load.dismiss();
+      console.error(error);
+    });
   }
 
   sendSms(){
