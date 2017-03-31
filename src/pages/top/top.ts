@@ -22,8 +22,11 @@ export class TopPage {
   ) {}
 
   ionViewDidLoad() {
-    this.albums = this.albumsService.getAll();
-    this.albumsCopy = this.albums;
+    this.albumsService.getAll()
+    .then(data =>{
+      this.albums = data;
+      this.albumsCopy = this.albums;
+    });
   }
 
   onInput(){

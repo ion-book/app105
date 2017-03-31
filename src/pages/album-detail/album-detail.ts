@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { GalleryPage } from '../gallery/gallery';
+
+import { AlbumsService } from '../../providers/albums-service';
 
 @Component({
   selector: 'page-album-detail',
@@ -8,53 +10,27 @@ import { GalleryPage } from '../gallery/gallery';
 })
 export class AlbumDetailPage {
 
-  photos: any[] = [
-    {
-      image: 'http://placehold.it/150/92c952'
-    },
-    {
-      image: 'http://placehold.it/150/771796'
-    },
-    {
-      image: 'http://placehold.it/150/24f355'
-    },
-    {
-      image: 'http://placehold.it/150/d32776'
-    },
-    {
-      image: 'http://placehold.it/150/f66b97'
-    },
-    {
-      image: 'http://placehold.it/150/56a8c2'
-    },
-    {
-      image: 'http://placehold.it/150/92c952'
-    },
-    {
-      image: 'http://placehold.it/150/771796'
-    },
-    {
-      image: 'http://placehold.it/150/24f355'
-    },
-    {
-      image: 'http://placehold.it/150/d32776'
-    },
-    {
-      image: 'http://placehold.it/150/f66b97'
-    },
-    {
-      image: 'http://placehold.it/150/56a8c2'
-    }
-  ];
+  albumId: string;
+  photos: any[] = [];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController
-  ) {}
+    public modalCtrl: ModalController,
+    public albumsService: AlbumsService,
+    public loadCtrl: LoadingController
+  ) {
+    this.albumId = this.navParams.get('albumId');
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AlbumDetailPage');
+    let load = this.loadCtrl.create();
+    load.present();
+    this.albumsService.getPhotos(this.albumId)
+    .then(photos =>{
+      this.photos = photos;
+      load.dismiss();
+    });
   }
 
   openGallery(photo){

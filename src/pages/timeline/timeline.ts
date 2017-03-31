@@ -24,14 +24,17 @@ export class TimelinePage {
       content: 'Cargando la informacion'
     });
     load.present();
-    setTimeout(()=>{
-      this.albums = this.albumsService.getAll();
+    this.albumsService.getAll()
+    .then(data =>{
       load.dismiss();
-    },1);
+      this.albums = data;
+    })
   }
 
-  goToAlbumDetailPage(){
-    this.navCtrl.push( AlbumDetailPage );
+  goToAlbumDetailPage( album ){
+    this.navCtrl.push( AlbumDetailPage, {
+      albumId: album.id
+    });
   }
 
 }

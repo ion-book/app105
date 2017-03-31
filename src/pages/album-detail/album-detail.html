@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row>
       <ion-col width-33 *ngFor="let photo of photos" (click)="openGallery( photo )">
-        <img [src]="photo.image" alt="image">
+        <img [src]="photo.thumbnailUrl" alt="image">
       </ion-col>
     </ion-row>
   </ion-grid>
