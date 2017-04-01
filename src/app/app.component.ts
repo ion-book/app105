@@ -10,6 +10,8 @@ import { HomePage } from '../pages/home/home';
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
 import { TasksFirebasePage } from '../pages/tasks-firebase/tasks-firebase';
+import { CameraPage } from '../pages/camera/camera';
+import { MapsPage } from '../pages/maps/maps';
 
 @Component({
   templateUrl: 'app.html'
@@ -56,7 +58,17 @@ export class MyApp {
       title: 'Tasks Firebase',
       icon: 'star',
       component: TasksFirebasePage
-    }
+    },
+    {
+      title: 'Camera',
+      icon: 'star',
+      component: CameraPage
+    },
+    {
+      title: 'Maps',
+      icon: 'star',
+      component: MapsPage
+    },
   ];
 
   constructor(
