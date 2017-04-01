@@ -9,7 +9,7 @@ import { TasksLocalService } from '../../providers/tasks-local-service';
 })
 export class TasksLocalPage {
 
-  tasks: any[];
+  tasks: any[] = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -23,7 +23,7 @@ export class TasksLocalPage {
     .then((tasks: any) =>{
       console.log('data', tasks);
       if(tasks){
-        this.tasks = tasks;
+        this.tasks = JSON.parse(tasks);
       }
     })
     .catch(error =>{
@@ -32,93 +32,82 @@ export class TasksLocalPage {
   }
 
   createTask(){
-    // let prompt = this.alertCtrl.create({
-    //   title: 'Nueva tarea',
-    //   message: "Digite la nueva tarea",
-    //   inputs: [
-    //     {
-    //       name: 'title',
-    //       placeholder: 'Title'
-    //     },
-    //   ],
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       handler: data => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'Save',
-    //       handler: data => {
-    //         let newTask ={
-    //           title: data.title,
-    //           completed: false
-    //         }
-    //         this.tasksService.create( newTask )
-    //         .then(resultTask =>{
-    //           this.tasks.unshift( resultTask );
-    //         })
-    //         .catch(error =>{
-    //           console.error( error );
-    //         });
-    //       }
-    //     }
-    //   ]
-    // });
-    // prompt.present();
+    let prompt = this.alertCtrl.create({
+      title: 'Nueva tarea',
+      message: "Digite la nueva tarea",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            let newTask ={
+              title: data.title,
+              completed: false
+            };
+            this.tasks.unshift( newTask );
+            this.tasksService.saveTasks( this.tasks )
+            .then(resultTask =>{
+              console.log( resultTask );
+            })
+            .catch(error =>{
+              console.error( error );
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   onChange( task: any){
-    // task.completed = !task.completed;
-    // this.tasksService.update( task );
+    task.completed = !task.completed;
+    this.tasksService.saveTasks( this.tasks );
   }
 
   updateTask( task: any, index: any ){
-    // let prompt = this.alertCtrl.create({
-    //   title: 'Actualizar tarea',
-    //   message: "Digite la nueva tarea",
-    //   inputs: [
-    //     {
-    //       name: 'title',
-    //       value: task.title,
-    //       placeholder: 'Title'
-    //     },
-    //   ],
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       handler: data => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'Save',
-    //       handler: data => {
-    //         let updatetask = Object.assign({}, task);
-    //         updatetask.title = data.title;
-    //         this.tasksService.update( updatetask )
-    //         .then(resultTask =>{
-    //           this.tasks[index] = resultTask;
-    //         })
-    //         .catch(error =>{
-    //           console.error( error );
-    //         });
-    //       }
-    //     }
-    //   ]
-    // });
-    // prompt.present();
+    let prompt = this.alertCtrl.create({
+      title: 'Actualizar tarea',
+      message: "Digite la nueva tarea",
+      inputs: [
+        {
+          name: 'title',
+          value: task.title,
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            task.title = data.title;
+            this.tasksService.saveTasks( this.tasks );
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   deleteTask(task, index){
-    // this.tasksService.delete(task.id)
-    // .then(resultTask =>{
-    //   this.tasks.splice(index, 1);
-    // })
-    // .catch(error =>{
-    //   console.error( error );
-    // });
+    this.tasks.splice(index, 1);
+    this.tasksService.saveTasks( this.tasks );
   }
 
 }
