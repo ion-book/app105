@@ -17,6 +17,8 @@ import { TopPage } from '../pages/top/top';
 import { UsersPage } from '../pages/users/users';
 import { AlbumDetailPage } from '../pages/album-detail/album-detail';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { CameraPage } from '../pages/camera/camera';
+import { MapsPage } from '../pages/maps/maps';
 
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
@@ -54,7 +56,9 @@ const PAGES = [
   TasksLocalPage,
   TasksFirebasePage,
   AlbumDetailPage,
-  GalleryPage
+  GalleryPage,
+  CameraPage,
+  MapsPage
 ];
 
 @NgModule({
