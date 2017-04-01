@@ -46,27 +46,27 @@ export class MyApp {
   taskPages: any[] = [
     {
       title: 'Tasks REST',
-      icon: 'images',
+      icon: 'list',
       component: TasksPage
     },
     {
       title: 'Tasks Local',
-      icon: 'star',
+      icon: 'list',
       component: TasksLocalPage
     },
     {
       title: 'Tasks Firebase',
-      icon: 'star',
+      icon: 'list',
       component: TasksFirebasePage
     },
     {
       title: 'Camera',
-      icon: 'star',
+      icon: 'camera',
       component: CameraPage
     },
     {
       title: 'Maps',
-      icon: 'star',
+      icon: 'map',
       component: MapsPage
     },
   ];
