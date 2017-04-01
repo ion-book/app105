@@ -3,6 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -26,6 +28,20 @@ import { TasksService } from '../providers/tasks-service';
 import { TasksLocalService } from '../providers/tasks-local-service';
 import { TasksFirebaseService } from '../providers/tasks-firebase-service';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBSF16hz2SrPzQXLn9aqN1m0w5pTJ6ME_Q",
+  authDomain: "eventsapp-478da.firebaseapp.com",
+  databaseURL: "https://eventsapp-478da.firebaseio.com",
+  projectId: "eventsapp-478da",
+  storageBucket: "eventsapp-478da.appspot.com",
+  messagingSenderId: "391784029961"
+};
+
+const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+};
+
 const PAGES = [
   TutorialPage,
   LoginPage,
@@ -48,7 +64,8 @@ const PAGES = [
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

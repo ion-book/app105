@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AngularFireAuth } from 'angularfire2';
+
 import { MyValidators } from '../../validators/validators';
-import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-register',
@@ -16,7 +17,8 @@ export class RegisterPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public formBuiler: FormBuilder
+    public formBuiler: FormBuilder,
+    public fireAuth: AngularFireAuth
   ) {
     this.registerForm = this.formBuiler.group({
       'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
@@ -36,12 +38,13 @@ export class RegisterPage {
 
   saveData( event: Event ){
     event.preventDefault();
-    console.log(this.registerForm.value);
-    this.goToHomePage();
-  }
-
-  goToHomePage(){
-    this.navCtrl.setRoot( HomePage );
+    this.fireAuth.createUser({
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.passwordGroup.confirmPassword
+    })
+    .catch(error =>{
+      console.log(error);
+    });
   }
 
 }

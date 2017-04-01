@@ -3,6 +3,8 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireAuth } from 'angularfire2';
+
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 import { TasksPage } from '../pages/tasks/tasks';
@@ -14,7 +16,7 @@ import { TasksFirebasePage } from '../pages/tasks-firebase/tasks-firebase';
 })
 export class MyApp {
 
-  rootPage:any = HomePage;
+  rootPage:any = TutorialPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -60,11 +62,13 @@ export class MyApp {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen
+    splashScreen: SplashScreen,
+    public fireAuth: AngularFireAuth
   ) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      this.checkSession();
     });
   }
 
@@ -79,6 +83,16 @@ export class MyApp {
   }
 
   logout(){
-    this.nav.setRoot( TutorialPage );
+    this.fireAuth.logout();
+  }
+
+  private checkSession(){
+    this.fireAuth.subscribe(session=>{
+      if(session){
+        this.nav.setRoot( HomePage );
+      }else{
+        this.nav.setRoot( TutorialPage );
+      }
+    });
   }
 }

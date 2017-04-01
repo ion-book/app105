@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { HomePage } from '../home/home';
+import { AngularFireAuth } from 'angularfire2';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +15,8 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public formBuiler: FormBuilder
+    public formBuiler: FormBuilder,
+    public fireAuth: AngularFireAuth
   ) {
     this.loginForm = this.formBuiler.group({
       'email': ['', [Validators.required, Validators.pattern(/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i)]],
@@ -29,12 +30,13 @@ export class LoginPage {
 
   saveData( event: Event ){
     event.preventDefault();
-    console.log(this.loginForm.value);
-    this.goToHomePage();
-  }
-
-  goToHomePage(){
-    this.navCtrl.setRoot( HomePage );
+    this.fireAuth.login({
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    })
+    .catch(error =>{
+      console.log(error);
+    });
   }
 
 }
