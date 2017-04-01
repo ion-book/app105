@@ -30,6 +30,8 @@ import { TasksService } from '../providers/tasks-service';
 import { TasksLocalService } from '../providers/tasks-local-service';
 import { TasksFirebaseService } from '../providers/tasks-firebase-service';
 
+import { Camera } from '@ionic-native/camera';
+
 const firebaseConfig = {
   apiKey: "AIzaSyBSF16hz2SrPzQXLn9aqN1m0w5pTJ6ME_Q",
   authDomain: "eventsapp-478da.firebaseapp.com",
@@ -81,6 +83,7 @@ const PAGES = [
     //Native
     StatusBar,
     SplashScreen,
+    Camera,
     //Services
     AlbumsService,
     UsersService,

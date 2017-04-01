@@ -1,22 +1,43 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Camera page.
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+
 @Component({
   selector: 'page-camera',
   templateUrl: 'camera.html'
 })
 export class CameraPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  image: string;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public camera: Camera
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CameraPage');
+  }
+
+  takePicture(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true
+    }
+    this.camera.getPicture(options)
+    .then(imageData =>{
+      this.image = 'data:image/jpeg;base64,' + imageData;
+    })
+    .catch(error =>{
+      console.log(error);
+    });
+
   }
 
 }
