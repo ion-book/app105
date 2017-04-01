@@ -1,18 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2';
 
-/*
-  Generated class for the TasksFirebaseService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class TasksFirebaseService {
 
-  constructor(public http: Http) {
-    console.log('Hello TasksFirebaseService Provider');
+  tasks: FirebaseListObservable<any>;
+
+  constructor(
+    public fireDatabase: AngularFireDatabase
+  ) {
+    this.tasks = this.fireDatabase.list('/tasks');
+  }
+
+  getAll(){
+    return this.tasks;
+  }
+
+  create(task: any){
+    return this.tasks.push( task );
+  }
+
+  update(task: any){
+    return this.tasks.update(task.$key, {
+      title: task.title,
+      completed: task.completed
+    });
+  }
+
+  delete(task: any){
+    return this.tasks.remove( task.$key );
   }
 
 }
