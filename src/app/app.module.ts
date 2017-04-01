@@ -18,11 +18,13 @@ import { GalleryPage } from '../pages/gallery/gallery';
 
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
+import { TasksFirebasePage } from '../pages/tasks-firebase/tasks-firebase';
 
 import { AlbumsService } from '../providers/albums-service';
 import { UsersService } from '../providers/users-service';
 import { TasksService } from '../providers/tasks-service';
 import { TasksLocalService } from '../providers/tasks-local-service';
+import { TasksFirebaseService } from '../providers/tasks-firebase-service';
 
 const PAGES = [
   TutorialPage,
@@ -34,6 +36,7 @@ const PAGES = [
   UsersPage,
   TasksPage,
   TasksLocalPage,
+  TasksFirebasePage,
   AlbumDetailPage,
   GalleryPage
 ];
@@ -61,7 +64,8 @@ const PAGES = [
     AlbumsService,
     UsersService,
     TasksService,
-    TasksLocalService
+    TasksLocalService,
+    TasksFirebaseService
   ]
 })
 export class AppModule {}

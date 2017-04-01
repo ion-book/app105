@@ -7,6 +7,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 import { TasksPage } from '../pages/tasks/tasks';
 import { TasksLocalPage } from '../pages/tasks-local/tasks-local';
+import { TasksFirebasePage } from '../pages/tasks-firebase/tasks-firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -48,6 +49,11 @@ export class MyApp {
       title: 'Tasks Local',
       icon: 'star',
       component: TasksLocalPage
+    },
+    {
+      title: 'Tasks Firebase',
+      icon: 'star',
+      component: TasksFirebasePage
     }
   ];
 

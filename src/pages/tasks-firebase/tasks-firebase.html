@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Tasks Firebase</ion-title>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="createTask()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks; let i = index">
+      <ion-item >
+        <ion-label>{{task.title}}</ion-label>
+        <ion-checkbox (ionChange)="onChange( task )" [checked]="task.completed"></ion-checkbox>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="updateTask( task, i )">
+          <ion-icon name="attach"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="primary" (click)="deleteTask( task, i )">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
