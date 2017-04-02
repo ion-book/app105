@@ -11,7 +11,7 @@ export class UsersService {
 
   getAll(){
     return new Promise((resolve, reject)=>{
-      this.http.get('https://randomuser.me/api/?results=1000')
+      this.http.get('https://randomuser.me/api/?results=10')
       .map(res => res.json())
       .subscribe(data=>{
         resolve(data);

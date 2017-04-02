@@ -2,6 +2,9 @@ Clave keystore: 123456
 Alias: ionDemo
 
 --
+
+2a42c777638fcbd941e6f6a8fb60b5c6ae863291
+
 # Pasos para hacer release en android
 
 - ionic cordova:build android --prod --release
