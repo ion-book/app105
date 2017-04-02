@@ -1,20 +1,11 @@
-Ionic 2 App Base
-=====================
+Clave keystore: 123456
+Alias: ionDemo
 
-This is the base template for Ionic 2 starter apps.
+--
+# Pasos para hacer release en android
 
-## Using this project
-
-You'll need the Ionic CLI with support for v2 apps:
-
-```bash
-$ npm install -g ionic
-```
-
-Then run:
-
-```bash
-$ ionic start myApp
-```
-
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/docs/v2/getting-started/) page.
+- ionic cordova:build android --prod --release
+- Generar llave si es el primer release
+- keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/nicolas/develop/projects/ion-book/course/keysApp105/my-release-key.keystore /Users/nicolas/develop/projects/ion-book/course/app105/platforms/android/build/outputs/apk/android-release-unsigned.apk ionDemo
+- /Users/nicolas/Development/android-sdk/build-tools/25.0.2/zipalign -v 4 /Users/nicolas/develop/projects/ion-book/course/app105/platforms/android/build/outputs/apk/android-release-unsigned.apk ionDemo.apk
