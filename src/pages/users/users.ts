@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ActionSheetController, LoadingController } from 'ionic-angular';
 
 import { UsersService } from '../../providers/users-service';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-users',
@@ -17,7 +18,8 @@ export class UsersPage {
     public usersService: UsersService,
     public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
-    public loadCtrl: LoadingController
+    public loadCtrl: LoadingController,
+    public socialSharing: SocialSharing
   ) {}
 
   ionViewDidLoad() {
@@ -112,7 +114,7 @@ export class UsersPage {
           text: 'Compartir',
           icon: 'share',
           handler: ()=>{
-            console.log('click share');
+            this.showShare();
           }
         },
         {
@@ -140,6 +142,20 @@ export class UsersPage {
       ]
     });
     action.present();
+  }
+
+  private showShare(){
+    let message = 'Hola te comparto mi kjksjdjdn';
+    let subject = 'Hola,  como estas?';
+    let file = 'http://www.nicobytes.com/images/photo.jpg';
+    let url = 'http://www.nicobytes.com/';
+    this.socialSharing.share(message, subject, file, url)
+    .then(()=>{
+      console.log('bien');
+    })
+    .catch( error=>{
+      console.log(error);
+    });
   }
 
 }
