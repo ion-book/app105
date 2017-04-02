@@ -1,22 +1,55 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Maps page.
+import { Geolocation } from '@ionic-native/geolocation';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+declare var google;
+
 @Component({
   selector: 'page-maps',
   templateUrl: 'maps.html'
 })
 export class MapsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  map: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public geolocation: Geolocation
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapsPage');
+    this.getPosition();
+  }
+
+  getPosition(){
+    this.geolocation.getCurrentPosition()
+    .then( response =>{
+      this.createMap(response.coords.latitude, response.coords.longitude);
+    })
+    .catch( error =>{
+      console.log(error);
+    });
+  }
+
+  private createMap(lat, lng){
+    let mapEle = document.getElementById('map');
+    this.map = new google.maps.Map(mapEle, {
+      center: {lat: lat, lng: lng},
+      zoom: 12
+    });
+
+    let marker = new google.maps.Marker({
+        position: {lat: lat, lng: lng},
+        title:"Hello World!",
+        map: this.map
+    });
+
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      mapEle.classList.add('show-map');
+      google.maps.event.trigger(mapEle, 'resize');
+    });
   }
 
 }

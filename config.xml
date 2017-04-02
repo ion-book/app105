@@ -41,4 +41,7 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="The app need use camera" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="The app need use the library" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~2.4.2">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="The app need use location" />
+    </plugin>
 </widget>

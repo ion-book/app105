@@ -31,6 +31,7 @@ import { TasksLocalService } from '../providers/tasks-local-service';
 import { TasksFirebaseService } from '../providers/tasks-firebase-service';
 
 import { Camera } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBSF16hz2SrPzQXLn9aqN1m0w5pTJ6ME_Q",
@@ -84,6 +85,7 @@ const PAGES = [
     StatusBar,
     SplashScreen,
     Camera,
+    Geolocation,
     //Services
     AlbumsService,
     UsersService,
