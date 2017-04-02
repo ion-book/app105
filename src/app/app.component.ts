@@ -18,7 +18,7 @@ import { MapsPage } from '../pages/maps/maps';
 })
 export class MyApp {
 
-  rootPage:any = TutorialPage;
+  rootPage:any;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -79,7 +79,6 @@ export class MyApp {
   ) {
     platform.ready().then(() => {
       statusBar.styleDefault();
-      splashScreen.hide();
       this.checkSession();
     });
   }

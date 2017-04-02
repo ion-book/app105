@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
-import { TimelinePage } from '../timeline/timeline'
-import { TopPage } from '../top/top'
-import { UsersPage } from '../users/users'
+import { TimelinePage } from '../timeline/timeline';
+import { TopPage } from '../top/top';
+import { UsersPage } from '../users/users';
+
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-home',
@@ -19,8 +21,10 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public splashScreen: SplashScreen
   ) {
+    this.splashScreen.hide();
     this.menuCtrl.enable(true, 'menu');
     this.mySelectedIndex = this.navParams.get('tabIndex')|| 0;
   }
