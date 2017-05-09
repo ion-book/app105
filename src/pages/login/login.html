@@ -13,16 +13,16 @@
         <ion-input type="email" placeholder="Ej: mail@mail.com" formControlName="email"></ion-input>
       </ion-item>
       <ion-item *ngIf="loginForm.get('email').errors && loginForm.get('email').dirty">
-        <p color="primary" *ngIf="loginForm.get('email').hasError('required')">Campo requerido</p>
-        <p color="primary" *ngIf="loginForm.get('email').hasError('pattern')">No es un email valido</p>
+        <p ion-text color="primary" *ngIf="loginForm.get('email').hasError('required')">Campo requerido</p>
+        <p ion-text color="primary" *ngIf="loginForm.get('email').hasError('pattern')">No es un email valido</p>
       </ion-item>
       <ion-item>
         <ion-label stacked>Password:</ion-label>
         <ion-input type="password" placeholder="Ej: 123345" formControlName="password"></ion-input>
       </ion-item>
       <ion-item *ngIf="loginForm.get('password').errors && loginForm.get('password').dirty">
-        <p color="primary" *ngIf="loginForm.get('password').hasError('required')">Campo requerido</p>
-        <p color="primary" *ngIf="loginForm.get('password').hasError('minlength')">Minimo 6 campos</p>
+        <p ion-text color="primary" *ngIf="loginForm.get('password').hasError('required')">Campo requerido</p>
+        <p ion-text color="primary" *ngIf="loginForm.get('password').hasError('minlength')">Minimo 6 campos</p>
       </ion-item>
     </ion-list>
     <div padding>

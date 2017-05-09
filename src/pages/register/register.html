@@ -13,16 +13,16 @@
         <ion-input type="email" placeholder="Ej: mail@mail.com" formControlName="email"></ion-input>
       </ion-item>
       <ion-item *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty">
-        <p color="primary" *ngIf="registerForm.get('email').hasError('required')">Campo requerido</p>
-        <p color="primary" *ngIf="registerForm.get('email').hasError('pattern')">No es un email valido</p>
+        <p ion-text color="primary" *ngIf="registerForm.get('email').hasError('required')">Campo requerido</p>
+        <p ion-text color="primary" *ngIf="registerForm.get('email').hasError('pattern')">No es un email valido</p>
       </ion-item>
       <ion-item>
         <ion-label stacked>Edad:</ion-label>
         <ion-input type="number" placeholder="Ej: 21" formControlName="age"></ion-input>
       </ion-item>
       <ion-item *ngIf="registerForm.get('age').errors && registerForm.get('age').dirty">
-        <p color="primary" *ngIf="registerForm.get('age').hasError('required')">Campo requerido</p>
-        <p color="primary" *ngIf="registerForm.get('age').hasError('isold')">tienes que ser mayor</p>
+        <p ion-text color="primary" *ngIf="registerForm.get('age').hasError('required')">Campo requerido</p>
+        <p ion-text color="primary" *ngIf="registerForm.get('age').hasError('isold')">tienes que ser mayor</p>
       </ion-item>
       <div formGroupName="passwordGroup">
         <ion-item>
@@ -30,19 +30,19 @@
           <ion-input type="password" placeholder="Ej: 123345" formControlName="password"></ion-input>
         </ion-item>
         <ion-item *ngIf="registerForm.get('passwordGroup').get('password').errors && registerForm.get('passwordGroup').get('password').dirty">
-          <p color="primary" *ngIf="registerForm.get('passwordGroup').get('password').hasError('required')">Campo requerido</p>
-          <p color="primary" *ngIf="registerForm.get('passwordGroup').get('password').hasError('minlength')">Minimo 6 campos</p>
+          <p ion-text color="primary" *ngIf="registerForm.get('passwordGroup').get('password').hasError('required')">Campo requerido</p>
+          <p ion-text color="primary" *ngIf="registerForm.get('passwordGroup').get('password').hasError('minlength')">Minimo 6 campos</p>
         </ion-item>
         <ion-item>
           <ion-label stacked>Confirmar Password:</ion-label>
           <ion-input type="password" placeholder="Ej: 123345" formControlName="confirmPassword"></ion-input>
         </ion-item>
         <ion-item *ngIf="registerForm.get('passwordGroup').get('confirmPassword').errors && registerForm.get('passwordGroup').get('confirmPassword').dirty">
-          <p color="primary" *ngIf="registerForm.get('passwordGroup').get('confirmPassword').hasError('required')">Campo requerido</p>
-          <p color="primary" *ngIf="registerForm.get('passwordGroup').get('confirmPassword').hasError('minlength')">Minimo 6 campos</p>
+          <p ion-text color="primary" *ngIf="registerForm.get('passwordGroup').get('confirmPassword').hasError('required')">Campo requerido</p>
+          <p ion-text color="primary" *ngIf="registerForm.get('passwordGroup').get('confirmPassword').hasError('minlength')">Minimo 6 campos</p>
         </ion-item>
         <ion-item *ngIf="registerForm.get('passwordGroup').errors && registerForm.get('passwordGroup').get('confirmPassword').dirty">
-          <p color="primary">Las constraseñas no son iguales</p>
+          <p ion-text color="primary">Las constraseñas no son iguales</p>
         </ion-item>
       </div>
     </ion-list>
